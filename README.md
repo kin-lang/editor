@@ -1,2 +1,2 @@
 # editor
-[Exprimental] Online IDE for kinya-lang
+[Exprimental] Online IDE for kin-lang
