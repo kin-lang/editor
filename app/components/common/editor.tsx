@@ -9,7 +9,7 @@ interface EditorProps extends EditorOptions{}
 
 const KinEditor: FC<EditorProps> = ({height, width, defaultLanguage, theme, defaultValue}) => {
   return (
-    <Editor loading={<Spinner size={'xl'} />} defaultLanguage='javascript'  height={"100vh"} theme='vs-dark' />
+    <Editor loading={<Spinner size={'xl'} />} defaultValue={defaultValue} defaultLanguage='javascript'  height={"100vh"} theme={theme} />
   )
 }
 

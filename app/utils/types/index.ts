@@ -5,3 +5,8 @@ export interface EditorOptions{
     theme: string,
     defaultValue: string   
 }
+
+export interface Program{
+    name: string
+    code: string
+}
