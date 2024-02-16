@@ -24,7 +24,7 @@ const NavBar = () => {
         </div>
         <div className="flex items-center gap-3">
           <Button variant={'outline'} className="">GitHub</Button>
-          <Button className="bg-blue-500">Docs</Button>
+          <Button className={'bg-blue-500'}>Docs</Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">

@@ -1,5 +1,7 @@
 "use client"
-
+import { samplePrograms } from "@/app/utils/data"
+import { Program } from "@/app/utils/types"
+import { KinContext } from "@/components/kin.provider"
 import {
   Select,
   SelectContent,
@@ -8,23 +10,33 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-import { useState } from "react"
+import {useContext, useState } from "react"
 
 const SideBar = () => {
 
-  const [selected, setSelected] = useState("helloWorld")
+  const [selected, setSelected] = useState<Program | undefined>(undefined)
+
+  const context = useContext(KinContext)
+
+  const {editorValue, updateEditorValue} = context!
+
+  const changeSample = (value: string) => {
+    const program = samplePrograms.find((program) => program.name === value)
+    setSelected(program)
+    updateEditorValue(program?.code ?? "")
+  }
 
   return (
     <nav className="p-4">
       <div className="mt-4">
-        <Select>
+        <Select onValueChange={(e)=>changeSample(e)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Sample programs" />
           </SelectTrigger>
           <SelectContent >
-            <SelectItem onClick={()=>setSelected("helloworld")} value="helloWorld">Hello world</SelectItem>
-            <SelectItem onClick={()=>setSelected("ifelse")} value="ifelse">If - Else</SelectItem>
-            <SelectItem onClick={()=>setSelected("loops")} value="loops">Loops</SelectItem>
+            {samplePrograms.map((program, index) => (
+              <SelectItem key={index} value={program.name}>{program.name}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ContextProvider from "./utils/providers/context.provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { KinContextProvider } from "@/components/kin.provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,16 +19,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-      <ContextProvider>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-        >
-          {children}
+          >
+          <KinContextProvider>
+            {children}
+          </KinContextProvider>
         </ThemeProvider>
-        </ContextProvider>
       </body>
     </html>
   );
