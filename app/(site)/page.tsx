@@ -13,7 +13,6 @@ import {
 import { KinContext } from "@/components/kin.provider";
 import { Button } from "@/components/ui/button";
 import { Play, Eraser } from "lucide-react";
-
 const defaultOptions: EditorOptions = {
   height: "100%",
   width: "100%",
@@ -24,7 +23,7 @@ const defaultOptions: EditorOptions = {
 export default function Home() {
   const context = useContext(KinContext);
 
-  const { editorValue } = context!;
+  const { editorValue, outputvalue } = context!;
 
   return (
     <main className="h-screen overflow-hidden">
@@ -59,7 +58,8 @@ export default function Home() {
               </div>
               <div className="p-4">
                 <span className="text-sm font-extralight">
-                  the output will be shown here
+                  {outputvalue === "" ? "Output will appear here" : outputvalue}
+                  <br />
                 </span>
               </div>
             </ResizablePanel>
