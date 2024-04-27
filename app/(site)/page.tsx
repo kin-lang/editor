@@ -18,7 +18,6 @@ const defaultOptions:EditorOptions = {
   height: "100%",
   width: "100%",
   defaultLanguage: "javascript",
-  theme: "vs-dark"
 }
 
 export default function Home() {

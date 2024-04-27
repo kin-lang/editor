@@ -2,7 +2,7 @@ export interface EditorOptions{
     height: string
     width: string
     defaultLanguage: string
-    theme: string,
+    theme?: string,
 }
 
 export interface Program{
