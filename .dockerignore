@@ -16,3 +16,6 @@ node_modules
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+# Ignore server
+/server

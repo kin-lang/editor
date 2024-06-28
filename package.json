@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:build": "docker build -t editor .",
+    "docker:run": "docker run -p 3000:3000 editor",
+    "docker:run-dev": "docker run -p 3000:3000 -v $(pwd):/app editor"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
