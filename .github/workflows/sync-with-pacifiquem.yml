@@ -1,0 +1,26 @@
+name: Push to personal github account
+on:
+  push:
+    branches: [main]
+
+jobs:
+  pushit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove .github, dist, node_modules
+        run: rsync * ./built -r --exclude .github --exclude dist --exclude node_modules
+
+      - name: Remove http.extraheader
+        run: git config --unset-all http.https://github.com/.extraheader
+
+      - name: push to main branch of personal account
+        uses: cpina/github-action-push-to-another-repository@v1.5.1
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.CPINO_TOKEN }}
+        with:
+          source-directory: "built"
+          destination-github-username: "pacifiquem"
+          destination-repository-name: "kin-editor"
+          user-email: pacifiquemurangwa001@gmail.com
+          target-branch: main
