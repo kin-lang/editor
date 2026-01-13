@@ -14,7 +14,6 @@ import {
   FunctionValue,
 } from "@kin-lang/kin";
 
-
 export function matchType(arg: RuntimeVal): any {
   switch (arg.type) {
     case "string":
@@ -219,12 +218,12 @@ export function createWebEnv(
             const obj = args[0] as ObjectVal;
             const target = (args[1] as StringVal).value;
             let found = false;
-            for (const val of obj.properties.values()) {
+            obj.properties.forEach((val) => {
+              if (found) return;
               if ((val as any).value === target) {
                 found = true;
-                break;
               }
-            }
+            });
             return MK_BOOL(found);
           })
         )
