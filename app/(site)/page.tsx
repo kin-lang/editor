@@ -138,7 +138,7 @@ tangaza_amakuru("Igiteranyo: ", x + y)`
         <div className="flex items-center gap-6">
           <nav className="flex items-center gap-4 text-sm font-medium text-zinc-500">
             <Link
-              href="https://kinlang.dev/docs"
+              href="https://kinlang.vercel.app/docs"
               target="_blank"
               className="hover:text-zinc-300 transition-colors flex items-center gap-1.5"
             >
