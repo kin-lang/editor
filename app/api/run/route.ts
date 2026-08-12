@@ -31,10 +31,15 @@ export async function POST(req: NextRequest) {
         result: resultString,
       });
     } catch (runtimeError: any) {
+      const code =
+        runtimeError && typeof runtimeError.code === "string"
+          ? runtimeError.code
+          : undefined;
+      const message = runtimeError.message || "Unknown Runtime Error";
       return NextResponse.json(
         {
           output: outputList,
-          error: runtimeError.message || "Unknown Runtime Error",
+          error: code ? `ikosa[${code}]: ${message}` : message,
         },
         { status: 500 }
       );
