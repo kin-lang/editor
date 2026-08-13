@@ -117,6 +117,21 @@ export function createWebEnv(
   };
   env.declareVar("sisitemu", MK_NATIVE_FN(securityError), true);
   env.declareVar("KIN_INYANDIKO", MK_OBJECT(new Map()), true);
+  // Networking is disabled in the browser playground (no outbound HTTP).
+  env.declareVar(
+    "KIN_URUBUGA",
+    MK_OBJECT(
+      new Map().set(
+        "saba",
+        MK_NATIVE_FN(() => {
+          throw new Error(
+            "Security Error: Networking is disabled in the online editor."
+          );
+        })
+      )
+    ),
+    true
+  );
 
   env.declareVar(
     "KIN_IMIBARE",
