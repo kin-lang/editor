@@ -44,8 +44,9 @@ tangaza_amakuru("Igiteranyo: ", x + y)`
   // Parse code to find injiza_amakuru calls
   useEffect(() => {
     // Regex to match: optional(var = ) injiza_amakuru("prompt")
+    // Optional type annotation between name and `=` (kin issue #256).
     const regex =
-      /(?:(reka|ntahinduka)\s+([a-zA-Z_]\w*)\s*=\s*)?injiza_amakuru\s*\(\s*(?:"([^"]*)"|'([^']*)')\s*\)/g;
+      /(?:(reka|ntahinduka)\s+([a-zA-Z_]\w*)(?:\s*:\s*(?:number|string|boolean|object|urutonde|fn|native-fn)\s*\??)?\s*=\s*)?injiza_amakuru\s*\(\s*(?:"([^"]*)"|'([^']*)')\s*\)/g;
 
     let match;
     const newInputs: InputField[] = [];
