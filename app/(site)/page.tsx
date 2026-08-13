@@ -28,8 +28,8 @@ interface InputField {
 
 export default function Home() {
   const [code, setCode] = useState<string>(
-    `reka x = injiza_amakuru("Andika x: ")
-reka y = injiza_amakuru("Andika y: ")
+    `reka x: ijambo = injiza_amakuru("Andika x: ")
+reka y: ijambo = injiza_amakuru("Andika y: ")
 
 tangaza_amakuru("Igiteranyo: ", x + y)`
   );
@@ -44,8 +44,9 @@ tangaza_amakuru("Igiteranyo: ", x + y)`
   // Parse code to find injiza_amakuru calls
   useEffect(() => {
     // Regex to match: optional(var = ) injiza_amakuru("prompt")
+    // Optional type annotation between name and `=` (primitives or named types).
     const regex =
-      /(?:(reka|ntahinduka)\s+([a-zA-Z_]\w*)\s*=\s*)?injiza_amakuru\s*\(\s*(?:"([^"]*)"|'([^']*)')\s*\)/g;
+      /(?:(reka|ntahinduka)\s+([a-zA-Z_]\w*)(?:\s*:\s*[A-Za-z_][A-Za-z0-9_]*\s*\??)?\s*=\s*)?injiza_amakuru\s*\(\s*(?:"([^"]*)"|'([^']*)')\s*\)/g;
 
     let match;
     const newInputs: InputField[] = [];
