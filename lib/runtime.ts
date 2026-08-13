@@ -50,6 +50,29 @@ export function matchType(arg: RuntimeVal): any {
         internal: false,
       };
     }
+    case "class": {
+      const c = arg as RuntimeVal & { name?: string };
+      return c.name ?? "imiterere";
+    }
+    case "instance": {
+      const inst = arg as RuntimeVal & {
+        klass?: { name?: string };
+        fields?: Map<string, RuntimeVal>;
+      };
+      const fields: { [key: string]: unknown } = {};
+      inst.fields?.forEach((value, key) => {
+        fields[key] = matchType(value);
+      });
+      return `${inst.klass?.name ?? "instance"} ${JSON.stringify(fields)}`;
+    }
+    case "type-val": {
+      const t = arg as RuntimeVal & { name?: string };
+      return t.name ?? "type-val";
+    }
+    case "bound-method": {
+      const bm = arg as RuntimeVal & { method?: { name?: string } };
+      return `<method ${bm.method?.name ?? "?"}>`;
+    }
     default:
       return arg;
   }
